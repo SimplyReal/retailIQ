@@ -112,8 +112,8 @@ retailIQ/
 
 ## 4. Documentation Index
 
-- [Product Specification (Locked)](file:///c:/Users/shubh/Desktop/retailIQ/docs/product-spec.md)
-- [System Architecture](file:///c:/Users/shubh/Desktop/retailIQ/docs/architecture.md)
-- [Agent Specifications](file:///c:/Users/shubh/Desktop/retailIQ/docs/agents.md)
-- [Dataset Blueprints](file:///c:/Users/shubh/Desktop/retailIQ/docs/datasets.md)
-- [API Documentation](file:///c:/Users/shubh/Desktop/retailIQ/docs/api.md)
+- [Product Specification (Locked)](docs/product-spec.md)
+- [System Architecture](docs/architecture.md)
+- [Agent Specifications](docs/agents.md)
+- [Dataset Blueprints](docs/datasets.md)
+- [API Documentation](docs/api.md)

@@ -1,7 +1,7 @@
 # RetailIQ
 
 > **An AI intelligence layer for the entire retail journey.**  
-> Built for AI Builder Cup 2026 — Retail & Commerce: Intelligent Customer and Business Experiences.
+> Retail & Commerce: Intelligent Customer and Business Experiences.
 
 RetailIQ is an investigation and decision layer connecting customer behavior, retail operations, and business intelligence. Instead of functioning solely as a chatbot or product recommender, RetailIQ operates on an evidence-based investigation loop:
 
@@ -112,7 +112,7 @@ retailIQ/
 
 ## 4. Documentation Index
 
-- [Product Specification (Locked)](docs/product-spec.md)
+- [Product Specification](docs/product-spec.md)
 - [System Architecture](docs/architecture.md)
 - [Agent Specifications](docs/agents.md)
 - [Dataset Blueprints](docs/datasets.md)

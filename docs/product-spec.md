@@ -1,7 +1,5 @@
 # RetailIQ Product Specification
 
-**AI Builder Cup 2026**
-
 > An AI intelligence layer for the entire retail journey.
 
 ## 1. What We Are Building

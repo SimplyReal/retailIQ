@@ -63,3 +63,5 @@ Thumbs.db
 # Data artifacts and temporary files
 *.tmp
 *.temp
+
+/docs/product-spec.md

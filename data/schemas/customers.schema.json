@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Customer",
+  "description": "RetailIQ customer master profile schema",
+  "type": "object",
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "pattern": "^CUST-[0-9]{4,}$",
+      "description": "Unique identifier for customer"
+    },
+    "age_group": {
+      "type": "string",
+      "enum": ["18-25", "26-35", "36-50", "51+"],
+      "description": "Customer demographic age bracket"
+    },
+    "location": {
+      "type": "string",
+      "description": "Primary city or metro region"
+    },
+    "preferred_category": {
+      "type": "string",
+      "description": "Top affinity merchandise category"
+    },
+    "preferred_brands": {
+      "type": "string",
+      "description": "Comma-separated list of preferred brands"
+    },
+    "avg_order_value": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Historical average order value in INR"
+    },
+    "price_range": {
+      "type": "string",
+      "enum": ["Budget", "Mid-Range", "Premium"],
+      "description": "Customer price sensitivity bracket"
+    },
+    "loyalty_tier": {
+      "type": "string",
+      "enum": ["Bronze", "Silver", "Gold", "Platinum"],
+      "description": "Customer loyalty program tier"
+    }
+  },
+  "required": [
+    "customer_id",
+    "age_group",
+    "location",
+    "preferred_category",
+    "avg_order_value",
+    "price_range",
+    "loyalty_tier"
+  ],
+  "additionalProperties": false
+}

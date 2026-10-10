@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReviewReturn",
+  "description": "RetailIQ product reviews and return telemetry schema",
+  "type": "object",
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "pattern": "^CUST-[0-9]{4,}$",
+      "description": "FK referencing customers.customer_id"
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^PROD-[0-9]{4,}$",
+      "description": "FK referencing products.product_id"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Product rating on 1-5 scale"
+    },
+    "review_text": {
+      "type": "string",
+      "description": "Customer qualitative feedback text"
+    },
+    "return_flag": {
+      "type": "boolean",
+      "description": "Indicates whether the purchase was returned"
+    },
+    "return_reason": {
+      "type": ["string", "null"],
+      "enum": ["sizing_issue", "defective", "not_as_described", "changed_mind", "poor_quality", null, ""],
+      "description": "Categorized reason for return if return_flag is true"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date string (YYYY-MM-DD)"
+    }
+  },
+  "required": [
+    "customer_id",
+    "product_id",
+    "rating",
+    "review_text",
+    "return_flag",
+    "date"
+  ],
+  "additionalProperties": false
+}

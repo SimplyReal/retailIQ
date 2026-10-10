@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchEvent",
+  "description": "RetailIQ customer search event schema",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^SRCH-[0-9]{5,}$",
+      "description": "Unique search event identifier"
+    },
+    "customer_id": {
+      "type": "string",
+      "pattern": "^CUST-[0-9]{4,}$",
+      "description": "FK referencing customers.customer_id"
+    },
+    "query": {
+      "type": "string",
+      "description": "Natural language search query text"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of search execution"
+    }
+  },
+  "required": [
+    "event_id",
+    "customer_id",
+    "query",
+    "timestamp"
+  ],
+  "additionalProperties": false
+}

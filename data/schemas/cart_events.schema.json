@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CartEvent",
+  "description": "RetailIQ cart action and abandonment event schema",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^CRT-[0-9]{5,}$",
+      "description": "Unique cart event identifier"
+    },
+    "customer_id": {
+      "type": "string",
+      "pattern": "^CUST-[0-9]{4,}$",
+      "description": "FK referencing customers.customer_id"
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^PROD-[0-9]{4,}$",
+      "description": "FK referencing products.product_id"
+    },
+    "action": {
+      "type": "string",
+      "enum": ["add", "remove", "abandon", "checkout_start"],
+      "description": "Cart mutation action"
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Units added or modified"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of cart event"
+    }
+  },
+  "required": [
+    "event_id",
+    "customer_id",
+    "product_id",
+    "action",
+    "quantity",
+    "timestamp"
+  ],
+  "additionalProperties": false
+}

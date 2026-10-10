@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SupportConversation",
+  "description": "RetailIQ customer service interaction schema (Optional / Extended)",
+  "type": "object",
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "pattern": "^CUST-[0-9]{4,}$",
+      "description": "FK referencing customers.customer_id"
+    },
+    "order_id": {
+      "type": ["string", "null"],
+      "description": "Nullable FK referencing orders.order_id"
+    },
+    "issue_type": {
+      "type": "string",
+      "enum": ["delivery_delay", "sizing_inquiry", "refund_status", "product_defect", "general_inquiry"],
+      "description": "Classification of the support ticket"
+    },
+    "conversation_text": {
+      "type": "string",
+      "description": "Summary or transcript snippet of customer conversation"
+    },
+    "resolution": {
+      "type": "string",
+      "enum": ["resolved", "escalated", "pending", "refund_issued"],
+      "description": "Final state of conversation ticket"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of ticket creation"
+    }
+  },
+  "required": [
+    "customer_id",
+    "issue_type",
+    "conversation_text",
+    "resolution",
+    "timestamp"
+  ],
+  "additionalProperties": false
+}

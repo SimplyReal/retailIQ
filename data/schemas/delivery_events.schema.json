@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DeliveryEvent",
+  "description": "RetailIQ delivery fulfillment telemetry schema (Optional / Extended)",
+  "type": "object",
+  "properties": {
+    "order_id": {
+      "type": "string",
+      "pattern": "^ORD-[0-9]{5,}$",
+      "description": "FK referencing orders.order_id"
+    },
+    "promised_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Promised delivery date (YYYY-MM-DD)"
+    },
+    "actual_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Actual delivery date (YYYY-MM-DD)"
+    },
+    "delay_days": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of days delayed past promised date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["delivered", "delayed", "in_transit", "failed"],
+      "description": "Fulfillment status"
+    }
+  },
+  "required": [
+    "order_id",
+    "promised_date",
+    "actual_date",
+    "delay_days",
+    "status"
+  ],
+  "additionalProperties": false
+}

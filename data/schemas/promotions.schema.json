@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Promotion",
+  "description": "RetailIQ promotion and discount campaign schema",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "pattern": "^PROD-[0-9]{4,}$",
+      "description": "FK referencing products.product_id"
+    },
+    "campaign": {
+      "type": "string",
+      "description": "Marketing campaign name"
+    },
+    "discount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Discount rate (e.g. 0.15 for 15%) or flat deduction in INR"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Campaign start date (YYYY-MM-DD)"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Campaign end date (YYYY-MM-DD)"
+    },
+    "channel": {
+      "type": "string",
+      "enum": ["all", "online", "in-store", "app"],
+      "description": "Channel eligibility for promotion"
+    }
+  },
+  "required": [
+    "product_id",
+    "campaign",
+    "discount",
+    "start_date",
+    "end_date",
+    "channel"
+  ],
+  "additionalProperties": false
+}

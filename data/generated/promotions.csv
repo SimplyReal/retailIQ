@@ -1,0 +1,10 @@
+product_id,campaign,discount,start_date,end_date,channel
+PROD-0001,MarathonSeasonKickoff,350.0,2026-09-01,2026-09-30,all
+PROD-0003,GymStarterBonus,300.0,2026-09-05,2026-10-15,online
+PROD-0005,MonsoonClearanceEarly,400.0,2026-09-01,2026-09-15,all
+PROD-0007,FitnessFestival,200.0,2026-09-10,2026-10-05,app
+PROD-0008,SpecialDeal_Fitn,459.8,2026-09-01,2026-10-31,all
+PROD-0010,SpecialDeal_Fitn,232.83,2026-09-01,2026-10-31,in-store
+PROD-0011,SpecialDeal_Foot,292.15,2026-09-01,2026-10-31,all
+PROD-0013,SpecialDeal_Foot,196.61,2026-09-01,2026-10-31,online
+PROD-0015,SpecialDeal_Appa,305.12,2026-09-01,2026-10-31,in-store

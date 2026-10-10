@@ -1,0 +1,17 @@
+customer_id,product_id,rating,review_text,return_flag,return_reason,date
+CUST-0001,PROD-0006,1,Runs at least two sizes smaller than labeled. Couldn't zip up.,True,sizing_issue,2026-09-10
+CUST-0002,PROD-0006,2,Chest and arm dimensions are way too tight compared to normal size chart.,True,sizing_issue,2026-09-11
+CUST-0003,PROD-0006,1,"Definite sizing discrepancy, ordered L but fits like S.",True,sizing_issue,2026-09-12
+CUST-0004,PROD-0006,2,Sleeves are unusually narrow. Had to return immediately.,True,sizing_issue,2026-09-13
+CUST-0005,PROD-0006,1,Nice fabric but fit is impossible. Much smaller than standard sizing.,True,sizing_issue,2026-09-14
+CUST-0006,PROD-0006,2,Sizing is completely off. Tight in shoulders and chest.,True,sizing_issue,2026-09-15
+CUST-0007,PROD-0006,1,Returned because the medium felt like an extra small.,True,sizing_issue,2026-09-16
+CUST-0008,PROD-0006,2,Poor fit calibration. Very restrictive around underarms.,True,sizing_issue,2026-09-17
+CUST-0001,PROD-0006,4,Good jacket if you size up by one.,False,,2026-09-20
+CUST-0005,PROD-0006,4,Kept it for cycling windbreak.,False,,2026-09-22
+CUST-0019,PROD-0010,5,"Good quality product, meets expectations.",False,,2026-09-24
+CUST-0001,PROD-0002,4,"Good quality product, meets expectations.",False,,2026-09-11
+CUST-0024,PROD-0013,4,"Good quality product, meets expectations.",False,,2026-09-15
+CUST-0012,PROD-0005,4,"Good quality product, meets expectations.",False,,2026-10-05
+CUST-0010,PROD-0009,4,"Good quality product, meets expectations.",False,,2026-09-18
+CUST-0022,PROD-0012,5,"Good quality product, meets expectations.",False,,2026-09-14

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inventory",
+  "description": "RetailIQ store-level inventory balance schema",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "pattern": "^PROD-[0-9]{4,}$",
+      "description": "FK referencing products.product_id"
+    },
+    "store_id": {
+      "type": "string",
+      "pattern": "^STORE-[0-9]{3,}$",
+      "description": "FK referencing stores.store_id"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Units currently on hand in store location"
+    },
+    "availability_time": {
+      "type": "string",
+      "enum": ["in_stock", "same_day", "next_day", "2_3_days", "out_of_stock"],
+      "description": "Fulfillment SLA from this location"
+    }
+  },
+  "required": [
+    "product_id",
+    "store_id",
+    "stock",
+    "availability_time"
+  ],
+  "additionalProperties": false
+}

@@ -108,6 +108,23 @@ retailIQ/
    ```
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+### Data Foundation & Local Datasets
+
+1. Generate synthetic datasets (default small scale with seeded retail scenarios):
+   ```bash
+   python scripts/generate_data.py --scale small --seed 42
+   ```
+
+2. Validate dataset schema, foreign keys, ranges, and scenarios:
+   ```bash
+   python scripts/validate_datasets.py --data-dir data/generated
+   ```
+
+3. Run automated tests (runs locally without Google Cloud):
+   ```bash
+   pytest tests -v
+   ```
+
 ---
 
 ## 4. Documentation Index

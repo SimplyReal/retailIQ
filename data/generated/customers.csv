@@ -1,0 +1,26 @@
+customer_id,age_group,location,preferred_category,preferred_brands,avg_order_value,price_range,loyalty_tier
+CUST-0001,26-35,Mumbai,Footwear,"AeroStride,PulseWear",3500.0,Mid-Range,Gold
+CUST-0002,26-35,Mumbai,Footwear,TerraFlex,4200.0,Mid-Range,Silver
+CUST-0003,18-25,Delhi,Footwear,AeroStride,2400.0,Budget,Bronze
+CUST-0004,36-50,Bengaluru,Apparel,"PulseWear,UrbanPeak",5200.0,Premium,Platinum
+CUST-0005,26-35,Ahmedabad,Apparel,UrbanPeak,3100.0,Mid-Range,Silver
+CUST-0006,18-25,Mumbai,Fitness & Gear,UrbanPeak,7292.29,Premium,Gold
+CUST-0007,18-25,Mumbai,Fitness & Gear,PulseWear,2455.32,Budget,Gold
+CUST-0008,26-35,Hyderabad,Apparel,HyperFit,1970.18,Budget,Gold
+CUST-0009,26-35,Kolkata,Apparel,AeroStride,7829.13,Premium,Silver
+CUST-0010,18-25,Hyderabad,Apparel,UrbanPeak,7424.28,Premium,Silver
+CUST-0011,36-50,Delhi,Footwear,UrbanPeak,3666.19,Mid-Range,Platinum
+CUST-0012,36-50,Delhi,Fitness & Gear,HyperFit,7558.85,Premium,Platinum
+CUST-0013,51+,Delhi,Footwear,TerraFlex,7684.59,Premium,Gold
+CUST-0014,18-25,Bengaluru,Footwear,PulseWear,2355.78,Budget,Platinum
+CUST-0015,51+,Delhi,Fitness & Gear,PulseWear,7163.53,Premium,Platinum
+CUST-0016,18-25,Ahmedabad,Apparel,TerraFlex,7960.78,Premium,Gold
+CUST-0017,36-50,Kolkata,Fitness & Gear,AeroStride,7440.18,Premium,Gold
+CUST-0018,36-50,Hyderabad,Footwear,HyperFit,7975.85,Premium,Bronze
+CUST-0019,26-35,Ahmedabad,Footwear,TerraFlex,7398.44,Premium,Bronze
+CUST-0020,18-25,Delhi,Apparel,PulseWear,7424.16,Premium,Bronze
+CUST-0021,18-25,Mumbai,Apparel,UrbanPeak,1840.87,Budget,Silver
+CUST-0022,26-35,Mumbai,Fitness & Gear,HyperFit,7865.83,Premium,Bronze
+CUST-0023,51+,Kolkata,Apparel,TerraFlex,4127.67,Mid-Range,Silver
+CUST-0024,36-50,Delhi,Fitness & Gear,PulseWear,4595.15,Mid-Range,Gold
+CUST-0025,36-50,Hyderabad,Fitness & Gear,HyperFit,1824.7,Budget,Bronze

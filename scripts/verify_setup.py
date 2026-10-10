@@ -104,6 +104,15 @@ def check_fastapi_app():
         return False
 
 
+def check_datasets():
+    print("\n[*] Checking datasets and schemas...")
+    from scripts.validate_datasets import DatasetValidator
+    data_dir = ROOT_DIR / "data" / "generated"
+    validator = DatasetValidator(data_dir)
+    success = validator.run_all()
+    return success
+
+
 def main():
     print("=" * 60)
     print("RetailIQ Foundation Verification")
@@ -114,14 +123,15 @@ def main():
     docs_ok = check_docs()
     imports_ok = check_backend_imports()
     app_ok = check_fastapi_app()
+    data_ok = check_datasets()
 
     print("\n" + "=" * 60)
-    if dirs_ok and docs_ok and imports_ok and app_ok:
-        print("ALL FOUNDATION CHECKS PASSED.")
+    if dirs_ok and docs_ok and imports_ok and app_ok and data_ok:
+        print("ALL FOUNDATION & DATA CHECKS PASSED.")
         print("=" * 60)
         sys.exit(0)
     else:
-        print("FOUNDATION CHECKS FAILED.")
+        print("FOUNDATION OR DATA CHECKS FAILED.")
         print("=" * 60)
         sys.exit(1)
 

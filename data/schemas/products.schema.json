@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product",
+  "description": "RetailIQ product master catalog schema",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "pattern": "^PROD-[0-9]{4,}$",
+      "description": "Unique product identifier"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Commercial title of the item"
+    },
+    "category": {
+      "type": "string",
+      "description": "Top-level department / category"
+    },
+    "subcategory": {
+      "type": "string",
+      "description": "Granular classification"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Manufacturer or brand label"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Base retail price in INR"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1.0,
+      "maximum": 5.0,
+      "description": "Average review rating score"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "JSON string of physical and merchandising attributes (color, size, material, gender)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed marketing and specification copy"
+    }
+  },
+  "required": [
+    "product_id",
+    "product_name",
+    "category",
+    "subcategory",
+    "brand",
+    "price",
+    "rating",
+    "attributes",
+    "description"
+  ],
+  "additionalProperties": false
+}

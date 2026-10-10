@@ -1,0 +1,9 @@
+customer_id,order_id,issue_type,conversation_text,resolution,timestamp
+CUST-0001,ORD-00009,sizing_inquiry,Customer reports: 'Runs at least two sizes smaller than labeled. Couldn't zip up.'. Requested return label.,refund_issued,2026-09-09T21:00:00+00:00
+CUST-0002,ORD-00010,sizing_inquiry,Customer reports: 'Chest and arm dimensions are way too tight compared to normal size chart.'. Requested return label.,refund_issued,2026-09-10T21:00:00+00:00
+CUST-0003,ORD-00011,sizing_inquiry,"Customer reports: 'Definite sizing discrepancy, ordered L but fits like S.'. Requested return label.",refund_issued,2026-09-11T21:00:00+00:00
+CUST-0004,ORD-00012,sizing_inquiry,Customer reports: 'Sleeves are unusually narrow. Had to return immediately.'. Requested return label.,refund_issued,2026-09-12T21:00:00+00:00
+CUST-0005,ORD-00013,sizing_inquiry,Customer reports: 'Nice fabric but fit is impossible. Much smaller than standard sizing.'. Requested return label.,refund_issued,2026-09-13T21:00:00+00:00
+CUST-0006,ORD-00014,sizing_inquiry,Customer reports: 'Sizing is completely off. Tight in shoulders and chest.'. Requested return label.,refund_issued,2026-09-14T21:00:00+00:00
+CUST-0007,ORD-00015,sizing_inquiry,Customer reports: 'Returned because the medium felt like an extra small.'. Requested return label.,refund_issued,2026-09-15T21:00:00+00:00
+CUST-0008,ORD-00016,sizing_inquiry,Customer reports: 'Poor fit calibration. Very restrictive around underarms.'. Requested return label.,refund_issued,2026-09-16T21:00:00+00:00

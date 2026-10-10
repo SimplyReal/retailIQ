@@ -48,6 +48,7 @@ def check_docs():
         "docs/agents.md",
         "docs/datasets.md",
         "docs/api.md",
+        "docs/demo-guide.md",
     ]
     root = Path(__file__).resolve().parent.parent
     all_ok = True
@@ -96,6 +97,23 @@ def check_fastapi_app():
             print(f"  [PASS] GET /api/v1/system returned 200: {sys_resp.json()}")
         else:
             print(f"  [FAIL] GET /api/v1/system failed: {sys_resp.status_code}")
+            return False
+
+        inv_resp = client.post(
+            "/api/v1/investigations",
+            json={"query": "Investigate inventory imbalance across stores", "product_id": "PROD-0001"},
+        )
+        if inv_resp.status_code == 200 and inv_resp.json().get("status") == "completed":
+            print(f"  [PASS] POST /api/v1/investigations returned 200: findings={len(inv_resp.json().get('findings', []))}")
+        else:
+            print(f"  [FAIL] POST /api/v1/investigations failed: {inv_resp.status_code}")
+            return False
+
+        retail_resp = client.get("/api/v1/retail/overview")
+        if retail_resp.status_code == 200 and retail_resp.json().get("status") == "success":
+            print(f"  [PASS] GET /api/v1/retail/overview returned 200: signals={len(retail_resp.json().get('signals', []))}")
+        else:
+            print(f"  [FAIL] GET /api/v1/retail/overview failed: {retail_resp.status_code}")
             return False
 
         return True

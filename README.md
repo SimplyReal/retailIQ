@@ -134,3 +134,4 @@ retailIQ/
 - [Agent Specifications](docs/agents.md)
 - [Dataset Blueprints](docs/datasets.md)
 - [API Documentation](docs/api.md)
+- [Demonstration & Verification Guide](docs/demo-guide.md)

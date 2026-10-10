@@ -1,45 +1,194 @@
-# RetailIQ Agent Specifications
+# RetailIQ Agent Specifications & Intelligence Contracts
 
 > Locked reference derived from [Product Specification](file:///c:/Users/shubh/Desktop/retailIQ/docs/product-spec.md).
 
 RetailIQ defines agents as modular intelligence services combining deterministic analytics (SQL/BigQuery), semantic retrieval (Vertex AI Search), and reasoning (Gemini).
 
+All agents share a domain-neutral intelligence contract implemented in [`backend/app/common/schemas.py`](file:///c:/Users/shubh/Desktop/retailIQ/backend/app/common/schemas.py).
+
 ---
 
-## 1. Unified Agent Output Contract
+## 1. Shared Intelligence Contracts
 
-Every agent in RetailIQ adheres to a standardized response contract. This ensures that frontend components, the orchestrator, and human audit logs render consistent evidence and actions.
+### 1.1 `Evidence` Model
+Every fact, data point, or retrieved document backing an agent finding must be encapsulated as an `Evidence` item:
 
 ```json
 {
-  "agent": "string",
-  "finding": "string",
+  "type": "metric",
+  "label": "Period 1 vs Period 2 Order Count",
+  "value": {
+    "prior_period": 9,
+    "current_period": 2
+  },
+  "source": "orders.csv"
+}
+```
+
+- **`type`**: Required enum (`"metric"`, `"data_point"`, `"retrieval"`, `"event"`).
+- **`label`**: Human-readable label (non-empty string).
+- **`value`**: Value payload (`number`, `string`, `dict`, `list`).
+- **`source`**: Originating dataset, table, or index reference (non-empty string).
+
+### 1.2 `Recommendation` Model
+Evidence-backed actions formulated for operator review and decision:
+
+```json
+{
+  "action": "Trigger inter-store inventory transfer of 30 units from STORE-004 to STORE-001",
+  "rationale": "High sales velocity in STORE-001 created stockout risk while STORE-004 holds excess aging stock",
+  "expected_impact": "Prevent ₹1,05,000 estimated weekly lost sales",
+  "priority": "HIGH",
+  "confidence": 0.89
+}
+```
+
+- **`action`**: Concise action title (non-empty string).
+- **`rationale`**: Justification based on evidence (non-empty string).
+- **`expected_impact`**: Projected operational or commercial outcome (non-empty string).
+- **`priority`**: Urgency rating (`"HIGH"`, `"MEDIUM"`, `"LOW"`).
+- **`confidence`**: Optional recommendation confidence score between `0.0` and `1.0`.
+
+### 1.3 `AgentResult` Model
+Standard output format returned by all customer and retail agents:
+
+```json
+{
+  "agent": "Supply-Demand Intelligence Agent",
+  "finding": "Localized stockout at STORE-001 with severe cross-store imbalance relative to STORE-004.",
   "evidence": [
     {
-      "type": "metric | data_point | retrieval | event",
-      "label": "string",
-      "value": "string | number | object",
-      "source": "string"
+      "type": "data_point",
+      "label": "STORE-001 Stock Balance",
+      "value": 2,
+      "source": "inventory.csv"
+    },
+    {
+      "type": "data_point",
+      "label": "STORE-004 Stock Balance",
+      "value": 85,
+      "source": "inventory.csv"
     }
   ],
-  "confidence": 0.85,
+  "confidence": 0.91,
   "recommendations": [
     {
-      "action": "string",
-      "rationale": "string",
-      "expected_impact": "string",
-      "priority": "HIGH | MEDIUM | LOW"
+      "action": "Rebalance 30 units from STORE-004 to STORE-001",
+      "rationale": "STORE-001 stock reaches depletion within 24 hours under current velocity",
+      "expected_impact": "Eliminate stockout loss",
+      "priority": "HIGH"
     }
   ],
   "sources": [
-    "string"
+    "inventory.csv",
+    "orders.csv"
+  ]
+}
+```
+
+- **`agent`**: Agent name (non-empty string).
+- **`finding`**: Synthesized finding summary (non-empty string).
+- **`evidence`**: List of structured `Evidence` objects.
+- **`confidence`**: Float constrained between `0.0` and `1.0` inclusive.
+- **`recommendations`**: List of structured `Recommendation` objects.
+- **`sources`**: List of non-empty source strings referenced.
+
+---
+
+## 2. Representative Domain Examples
+
+### 2.1 Customer Intelligence Example (Lost Sale Investigation)
+
+```json
+{
+  "agent": "Lost Sale Investigation Agent",
+  "finding": "Customer CUST-0003 abandoned cart on PROD-0004 due to price sensitivity mismatch (product price is 2.7x average order value) with no active promotional discount.",
+  "evidence": [
+    {
+      "type": "data_point",
+      "label": "Customer Price Sensitivity",
+      "value": {
+        "tier": "Budget",
+        "avg_order_value": 2400.0
+      },
+      "source": "customers.csv"
+    },
+    {
+      "type": "data_point",
+      "label": "Cart Item Price",
+      "value": 6499.0,
+      "source": "products.csv"
+    },
+    {
+      "type": "event",
+      "label": "Cart Action Telemetry",
+      "value": {
+        "action": "abandon",
+        "duration_seconds": 185
+      },
+      "source": "cart_events.csv"
+    }
+  ],
+  "confidence": 0.93,
+  "recommendations": [
+    {
+      "action": "Present alternative recommendation PROD-0001 (₹3,499) with active ₹350 promotion",
+      "rationale": "Matches road running intent while fitting within customer's budget range",
+      "expected_impact": "Recovers cart conversion opportunity",
+      "priority": "HIGH"
+    }
+  ],
+  "sources": [
+    "customers.csv",
+    "products.csv",
+    "cart_events.csv",
+    "promotions.csv"
+  ]
+}
+```
+
+### 2.2 Retail Intelligence Example (Return Intelligence)
+
+```json
+{
+  "agent": "Return Intelligence Agent",
+  "finding": "Product PROD-0006 exhibits an anomalous 80% return rate driven by severe sizing defects across customer reviews.",
+  "evidence": [
+    {
+      "type": "metric",
+      "label": "Product Return Rate",
+      "value": "80%",
+      "source": "reviews_returns.csv"
+    },
+    {
+      "type": "retrieval",
+      "label": "Extracted Review Snippets",
+      "value": [
+        "Runs at least two sizes smaller than labeled",
+        "Chest and arm dimensions are way too tight"
+      ],
+      "source": "reviews_returns.csv"
+    }
+  ],
+  "confidence": 0.95,
+  "recommendations": [
+    {
+      "action": "Update product sizing guide banner with 'Runs 2 sizes small' advisory",
+      "rationale": "Customers ordering normal size consistently report inability to wear item",
+      "expected_impact": "Estimated 60% reduction in return processing overhead",
+      "priority": "HIGH"
+    }
+  ],
+  "sources": [
+    "reviews_returns.csv",
+    "orders.csv"
   ]
 }
 ```
 
 ---
 
-## 2. Customer Intelligence Agents
+## 3. Customer Intelligence Agents
 
 | Agent | Responsibility | Core Data Inputs | Primary Output |
 |---|---|---|---|
@@ -51,7 +200,7 @@ Every agent in RetailIQ adheres to a standardized response contract. This ensure
 
 ---
 
-## 3. Retail / Business Intelligence Agents
+## 4. Retail / Business Intelligence Agents
 
 | Agent | Responsibility | Core Data Inputs | Primary Output |
 |---|---|---|---|
@@ -70,8 +219,9 @@ Every agent in RetailIQ adheres to a standardized response contract. This ensure
 
 ---
 
-## 4. Implementation Guidelines
+## 5. Domain Neutrality & Governance Rules
 
-- **Reasoning vs. Computation**: LLM prompts must consume pre-calculated SQL aggregates and factual evidence. Calculations are never computed by the LLM.
-- **Modularity**: Agents are exposed as Python modules and service functions behind the unified orchestrator.
-- **Traceability**: All agent responses must populate `sources` and `evidence` fields for full auditability.
+1. **Universal Format**: Customer Intelligence and Retail Intelligence agents share the exact same `AgentResult` format.
+2. **Deterministic Backing**: Calculations stay in SQL/code. The `evidence` field supplies the verified mathematical and data backing.
+3. **Traceability**: Findings must list originating `sources` (table or index names) and verifiable evidence items.
+4. **Human Review**: Every recommendation specifies priority (`HIGH`, `MEDIUM`, `LOW`) and actionable rationale for operator sign-off.
